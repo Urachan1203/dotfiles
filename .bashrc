@@ -143,28 +143,20 @@ eval "$(pyenv virtualenv-init -)"
 
 
 # fzf installation
-if [ ! -d ~/.fzf ]; then
-  git clone https://github.com/junegunn/fzf.git
+# if [ ! -d ~/.fzf ]; then
+#   git clone https://github.com/junegunn/fzf.git
+# fi
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [ ! -d ~/.fzy ]; then
+    git clone https://github.com/jhawthorn/fzy ~/.fzy
+    cd ~/.fzy
+    make
+    cd ${HOME}
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH=$PATH:${HOME}/.fzy
 
-function cd() {
-    if [[ "$#" != 0 ]]; then
-        builtin cd "$@";
-        return
-    fi
-    while true; do
-        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-        local dir="$(printf '%s\n' "${lsd[@]}" |
-            fzf --reverse --preview '
-                __cd_nxt="$(echo {})";
-                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
-                echo $__cd_path;
-                echo;
-                ls -p --color=always "${__cd_path}";
-        ')"
-        [[ ${#dir} != 0 ]] || return 0
-        builtin cd "$dir" &> /dev/null
-    done
-}
+chmod +x "${HOME}/dotfiles/plugins/enhancd/init.sh"
+source "${HOME}/dotfiles/plugins/enhancd/init.sh"
