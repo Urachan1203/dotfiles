@@ -1,5 +1,5 @@
-Dotfiles
-# Install
+# Dotfiles
+## Install
 ```
 $ git clone https://github.com/Urachan1203/dotfiles.git ~/dotfiles
 $ cd
