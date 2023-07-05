@@ -143,11 +143,11 @@ eval "$(pyenv virtualenv-init -)"
 
 
 # fzf installation
-# if [ ! -d ~/.fzf ]; then
-#   git clone https://github.com/junegunn/fzf.git
-# fi
+if [ ! -d ~/.fzf ]; then
+  git clone https://github.com/junegunn/fzf.git
+fi
 
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ ! -d ~/.fzy ]; then
     git clone https://github.com/jhawthorn/fzy ~/.fzy
