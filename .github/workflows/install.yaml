@@ -14,9 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install and activate .bashrc
+      - name: Prepare for installation
+        run: chmod +x ./install.sh
+      - name: Check dir
+        run: ls -al
+      - name: Install .bashrc
         run: |
-          chmod +x ./install.sh
           ./install.sh
           source ~/.bashrc
 
