@@ -123,6 +123,7 @@ fi
 # nvcc
 export PATH=$PATH:/usr/local/cuda/bin
 
+echo "start mydotfiles setup"
 
 export DOTFILES_ROOT="$HOME/dotfiles"
 export MYPLUGIN_ROOT="$DOTFILES_ROOT/plugins"
