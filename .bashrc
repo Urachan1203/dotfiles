@@ -123,8 +123,6 @@ fi
 # nvcc
 export PATH=$PATH:/usr/local/cuda/bin
 
-echo "start mydotfiles setup"
-
 export DOTFILES_ROOT="$HOME/dotfiles"
 export MYPLUGIN_ROOT="$DOTFILES_ROOT/plugins"
 
@@ -172,3 +170,50 @@ fi
 
 chmod +x "$ENHANCD_ROOT/init.sh"
 source "$ENHANCD_ROOT/init.sh"
+
+
+# get git branch info
+function git_branch {
+    local branch_name="$(git symbolic-ref --short HEAD 2>/dev/null)"
+    if [ -n "$branch_name" ]; then
+        echo " ($branch_name)"
+    fi
+}
+
+function pyenv_version {
+    local version_name="$(pyenv version-name 2>/dev/null)"
+    if [ -n "$version_name" ]; then
+        echo -e "\[\e[48;5;6m\] [pyenv : $version_name] \[\e[m\]"
+    fi
+}
+
+# terminal design
+# Output user
+NAME="\[\e[1;37;42m\]"
+HOST="\[\e[1;40m\]"
+DIR="\[\e[0;30;47m\]"
+END="\[\e[m\]"
+TIME="\[\e[1;90;107m\]"
+
+# export PS1="${NAME} \u ${HOST} @\h ${DIR} \w ${TIME} \t ${END}\$(git_branch) \n > "
+
+# ls and ll
+alias ls='ls -G --color'
+alias ll='ls -laGh'
+
+# Color ls
+LS_COLORS='no=0:ow=41:di=7:fi=0:ln=105:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=01;31:*.md=96'
+export LS_COLORS
+
+# Break after output
+function prompt {
+    if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
+        PS1_NEWLINE_LOGIN=true
+    else
+        printf '\n'
+    fi
+    export PS1="${NAME} \u ${HOST} @\h ${DIR} \w ${TIME} \t ${END}\$(git_branch) \n > "
+    PS1="$(pyenv_version)${PS1}"
+}
+
+PROMPT_COMMAND='prompt'
