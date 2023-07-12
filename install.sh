@@ -1,4 +1,6 @@
 #!/usr/bin/bash
 
 mv ~/.bashrc ~/.bashrc.backup
-ln -s .bashrc ~/.bashrc
+ls -al ~
+pwd
+ln -s ./.bashrc ~/.bashrc
