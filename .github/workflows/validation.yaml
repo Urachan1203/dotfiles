@@ -1,4 +1,4 @@
-name: Install .bashrc
+name: Validate .bashrc
 on:
   push:
     branches:
