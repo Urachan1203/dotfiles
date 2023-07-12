@@ -18,5 +18,5 @@ jobs:
       - name: Check .bashrc
         run: cat .bashrc
       - name: Install .bashrc
-        run: source .bashrc
+        run: . .bashrc
 
