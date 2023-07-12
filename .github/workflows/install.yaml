@@ -16,7 +16,7 @@ jobs:
       - name: Check dir
         run: ls -al
       - name: Check .bashrc
-        run: head -n 5 .bashrc
+        run: cat .bashrc
       - name: Install .bashrc
         run: source .bashrc
 
