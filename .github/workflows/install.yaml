@@ -13,12 +13,10 @@ jobs:
         run: pwd
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Prepare for installation
-        run: chmod +x ./install.sh
       - name: Check dir
         run: ls -al
+      - name: Check .bashrc
+        run: head -n 5 .bashrc
       - name: Install .bashrc
-        run: |
-          source .bashrc
+        run: source .bashrc
 
