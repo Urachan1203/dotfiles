@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Show ubuntu details
-        run: rsb_release -a
+      - name: Check current dir
+        run: pwd
       - name: Checkout repository
         uses: actions/checkout@v3
 
