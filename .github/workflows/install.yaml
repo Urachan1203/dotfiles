@@ -1,0 +1,21 @@
+name: Install .bashrc
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Show ubuntu details
+        run: rsb_release -a
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install and activate .bashrc
+        run: |
+          ./install.sh
+          source ~/.bashrc
+
