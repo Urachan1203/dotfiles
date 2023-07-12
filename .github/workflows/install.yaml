@@ -16,6 +16,7 @@ jobs:
 
       - name: Install and activate .bashrc
         run: |
+          chmod +x ./install.sh
           ./install.sh
           source ~/.bashrc
 
