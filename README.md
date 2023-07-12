@@ -1,5 +1,5 @@
 # Dotfiles
-![workflow](https://github.com/github/docs/actions/workflows/install.yaml/badge.svg)
+![workflow](https://github.com/Urachan1203/dotfiles/actions/workflows/install.yaml/badge.svg)
 Dotfiles customized by K.Higashiura
 
 ## Install
