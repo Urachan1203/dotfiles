@@ -123,6 +123,11 @@ fi
 # nvcc
 export PATH=$PATH:/usr/local/cuda/bin
 
+
+export DOTFILES_ROOT="$HOME/dotfiles"
+export MYPLUGIN_ROOT="$DOTFILES_ROOT/plugins"
+
+
 # pyenv / virtualenv installation
 if [ ! -d ~/.pyenv ]; then
   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -141,7 +146,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-
 # fzf installation
 if [ ! -d ~/.fzf ]; then
   git clone https://github.com/junegunn/fzf.git
@@ -155,8 +159,14 @@ if [ ! -d ~/.fzy ]; then
     make
     cd ${HOME}
 fi
-
 export PATH=$PATH:${HOME}/.fzy
 
-chmod +x "${HOME}/dotfiles/plugins/enhancd/init.sh"
-source "${HOME}/dotfiles/plugins/enhancd/init.sh"
+# enhancd installation
+export ENHANCD_ROOT="$MYPLUGIN_ROOT/enhancd"
+
+if [ ! -d $ENHANCD_ROOT ]; then
+    git clone https://github.com/b4b4r07/enhancd $ENHANCD_ROOT
+fi
+
+chmod +x "$ENHANCD_ROOT/init.sh"
+source "$ENHANCD_ROOT/init.sh"
