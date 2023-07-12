@@ -18,5 +18,8 @@ jobs:
       - name: Check .bashrc
         run: cat .bashrc
       - name: Install .bashrc
-        run: . .bashrc
+        run: |
+           set -e
+           BASHRC_COMMANDS=$(cat .bashrc)
+           bash -c "$BASHRC_COMMANDS"
 
