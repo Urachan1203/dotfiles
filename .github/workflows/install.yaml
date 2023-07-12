@@ -20,7 +20,5 @@ jobs:
         run: ls -al
       - name: Install .bashrc
         run: |
-          ls -al ~
-          ./install.sh
-          source ~/.bashrc
+          source .bashrc
 
