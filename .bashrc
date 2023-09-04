@@ -206,14 +206,14 @@ LS_COLORS='no=0:ow=41:di=7:fi=0:ln=105:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=01;31:*
 export LS_COLORS
 
 # Break after output
-function prompt {
-    if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
-        PS1_NEWLINE_LOGIN=true
-    else
-        printf '\n'
-    fi
-    export PS1="${NAME} \u ${HOST} @\h ${DIR} \w ${TIME} \t ${END}\$(git_branch) \n > "
-    PS1="$(pyenv_version)${PS1}"
-}
+# function prompt {
+#     if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
+#         PS1_NEWLINE_LOGIN=true
+#     else
+#         printf '\n'
+#     fi
+#     export PS1="${NAME} \u ${HOST} @\h ${DIR} \w ${TIME} \t ${END}\$(git_branch) \n > "
+#     PS1="$(pyenv_version)${PS1}"
+# }
 
-PROMPT_COMMAND='prompt'
+# PROMPT_COMMAND='prompt'
