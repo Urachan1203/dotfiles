@@ -161,16 +161,6 @@ if [ ! -d ~/.fzy ]; then
 fi
 export PATH=$PATH:${HOME}/.fzy
 
-# enhancd installation
-export ENHANCD_ROOT="$MYPLUGIN_ROOT/enhancd"
-
-if [ ! -d $ENHANCD_ROOT ]; then
-    git clone https://github.com/b4b4r07/enhancd $ENHANCD_ROOT
-fi
-
-chmod +x "$ENHANCD_ROOT/init.sh"
-source "$ENHANCD_ROOT/init.sh"
-
 
 # get git branch info
 function git_branch {
