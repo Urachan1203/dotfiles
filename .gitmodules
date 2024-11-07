@@ -1,0 +1,3 @@
+[submodule ".vim/themes/vim-monokai"]
+	path = .vim/themes/vim-monokai
+	url = https://github.com/ku1ik/vim-monokai.git
