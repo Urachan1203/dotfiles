@@ -23,6 +23,8 @@ set cursorline
 set virtualedit=onemore
 " インデントはスマートインデント
 set smartindent
+" ビープ音を可視化
+set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
 " ステータスラインを常に表示
@@ -33,6 +35,7 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
+syntax enable
 
 
 " Tab系
@@ -60,11 +63,19 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-"" theme設定
-syntax enable
-colorscheme monokai
 
-" 導入するプラグインを以下に列挙
+let g:airline#extensions#tabline#enabled = 1
+
+"vim-plug auto install
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+
+
 call plug#begin()
 
 " List your plugins here
@@ -78,7 +89,7 @@ Plug 'lambdalisue/glyph-palette.vim'
 
 Plug 'lambdalisue/nerdfont.vim' " フォントの設定
 
-" "Git関係のプラグイン
+"Git関係のプラグイン
 Plug 'lambdalisue/fern-git-status.vim'  "git差分をファイラに表示
 Plug 'airblade/vim-gitgutter'   " git diffの可視化
 
@@ -88,17 +99,19 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
+"" theme設定
+colorscheme monokai
+
 
 "" vim-airline
 "" cf. https://qiita.com/youichiro/items/b4748b3e96106d25c5bc
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#default#layout = [
   \ [ 'a', 'b', 'c' ],
   \ ['z']
   \ ]
 let g:airline_section_c = '%t %M'
 let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
-"  変更がなければdiffの行数を表示しない
+" 変更がなければdiffの行数を表示しない
 let g:airline#extensions#hunks#non_zero_only = 1
 
 "ファイルツリー設定
@@ -120,4 +133,10 @@ nnoremap gh :GitGutterLineHighlightsToggle<CR>
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
+
+" vimのベーシックな設定
+if filereadable(expand('~/.vimrcs/.vimrc.fzf'))
+  source ~/.vimrcs/.vimrc.fzf
+endif
+
 
