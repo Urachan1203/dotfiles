@@ -23,8 +23,6 @@ set cursorline
 set virtualedit=onemore
 " インデントはスマートインデント
 set smartindent
-" ビープ音を可視化
-set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
 " ステータスラインを常に表示
@@ -35,7 +33,7 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
-syntax enable
+
 
 
 " Tab系
@@ -64,16 +62,6 @@ set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 
-let g:airline#extensions#tabline#enabled = 1
-
-"vim-plug auto install
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-
 
 
 call plug#begin()
@@ -100,11 +88,13 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 "" theme設定
+syntax enable
 colorscheme monokai
 
 
 "" vim-airline
 "" cf. https://qiita.com/youichiro/items/b4748b3e96106d25c5bc
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#default#layout = [
   \ [ 'a', 'b', 'c' ],
   \ ['z']
@@ -133,10 +123,4 @@ nnoremap gh :GitGutterLineHighlightsToggle<CR>
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
-
-" vimのベーシックな設定
-if filereadable(expand('~/.vimrcs/.vimrc.fzf'))
-  source ~/.vimrcs/.vimrc.fzf
-endif
-
 
